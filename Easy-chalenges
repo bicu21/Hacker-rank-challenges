@@ -92,6 +92,67 @@ for x in a :
         poduct = x * y
         print(product , end='')
         print()
+
+#List Comprehension
+x = 2
+y = 3
+z = 4
+print(x + y + z)
+#  Range and iteration.
+# range(5) means 0 to 4
+for i in range(5):
+    print(i, end=" ")
+# We can also control where it starts and end.
+for i in range(2,10):
+    print(i)
+#  Nested loops
+for i in range(2):
+    for j in range(3):
+        print(i,j)
+
+# To go through x, y,z I need three loops
+x = 1
+y = 1
+z = 1
+for i in range(x + 1):
+    for j in range(y+1):
+        for k in range(z + 1):
+            print(i, j, k)
+# Tuples
+#  A tuple is a list it uses parenthesis.
+# It cannot be changed after created.
+my_tuple = (1,2,34,5)
+print(my_tuple[0])
+# Filtering with conditions
+x = 1
+y = 1
+z = 1
+n = 2
+
+points = []
+
+for i in range(x + 1):
+    for j in range(y + 1):
+        for k in range(z + 1):
+            if i + j + k != n:
+                points.append((i, j, k))
+
+print(points)
+# if i + j + k != n: — this filters out unwanted combinations.
+# Only valid coordinates are added to the points list
+# List comprehensions
+x = 1
+y = 1
+z = 1
+n = 2
+
+points = [(i, j, k) 
+          for i in range(x + 1) 
+          for j in range(y + 1) 
+          for k in range(z + 1) 
+          if i + j + k != n]
+
+print(points)
     
 
 
