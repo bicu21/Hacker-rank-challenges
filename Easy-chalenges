@@ -153,6 +153,31 @@ points = [(i, j, k)
           if i + j + k != n]
 
 print(points)
+# Another day solving problems 
+#Lists
+#A list is ordered collection of items.
+#Contains elements of any data type.
+# defined using square brackets.
+scores = [2, 3, 6, 6, 5]
+print("2 3 6 6 5".split())
+# Removig duplicate values
+unique_list = set(scores)
+print(unique_list)
+# Sorting data 
+sorted_scores = sorted(unique_list,reverse=True)
+print(sorted_scores)
+# Accessing elements in a sorted list
+runner_up = sorted_scores[1]
+print(runner_up)
+
+if __name__ == '__main__':
+    n = int(input())
+    arr = map(int, input().split())
+    
+    unique_arr = set(arr)
+    sorted_arr = sorted(unique_arr,reverse=True)
+    runner_up = sorted_arr[1]
+    print(runner_up)
     
 
 
