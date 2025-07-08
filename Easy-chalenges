@@ -178,6 +178,23 @@ if __name__ == '__main__':
     sorted_arr = sorted(unique_arr,reverse=True)
     runner_up = sorted_arr[1]
     print(runner_up)
+#Nested List
+
+if __name__ == '__main__':
+    students = []
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        students.append([name, score])
+
+    grades = [score for name, score in students]
+    unique_grades = sorted(set(grades))
+    second_lowest = unique_grades[1]
+    second_lowest_students = [name for name, score in students if score == second_lowest]
+    second_lowest_students.sort()
+
+    for student in second_lowest_students:
+        print(student)
     
 
 
