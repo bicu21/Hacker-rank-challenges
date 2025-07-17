@@ -1,0 +1,36 @@
+# Step 1: Create an empty dictionary to store student names and their marks
+student_marks = {}
+
+# Step 2: Read the number of students
+n = int(input())  # For example, if n = 3, it means we'll read 3 student records
+
+# Step 3: Read n lines of input
+for _ in range(n):
+    # Input will be like: 'alpha 20 30 40'
+    data = input().split()  # splits into a list like ['alpha', '20', '30', '40']
+
+    name = data[0]  # first part is the student's name
+    # The rest are marks, which need to be converted from strings to floats
+    marks = list(map(float, data[1:]))
+
+    # Store name and marks in the dictionary
+    student_marks[name] = marks
+
+# Step 4: Read the query name (whose average we need to find)
+query_name = input()  # Example: 'beta'
+
+# Step 5: Retrieve the marks list for that student from the dictionary
+marks_list = student_marks.get(query_name, [])  # Returns the list or empty if not found
+
+# Step 6: Calculate the average
+# Use sum() to add all marks, and len() to count how many marks
+average = sum(marks_list) / len(marks_list)
+
+# Step 7: Print the average rounded to 2 decimal places
+# We use format string to show 2 decimal places
+print(f"{average:.2f}")
+# sample output 3
+alpha 20 30 40
+beta 50 60 70
+gamma 90 80 70
+beta
