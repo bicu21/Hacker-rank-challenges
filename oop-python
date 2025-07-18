@@ -1,0 +1,83 @@
+# Define a class called Dog
+class Dog:
+    # Constructor method to initialize object properties
+    def __init__(self, name, breed):
+        self.name = name  # instance variable for dog's name
+        self.breed = breed  # instance variable for dog's breed
+
+    # Method to make the dog bark
+    def bark(self):
+        return f"{self.name} says Woof!"
+
+# Create an object (instance) of Dog
+my_dog = Dog("Buddy", "Golden Retriever")
+
+# Accessing method and properties
+print(my_dog.name)       # Output: Buddy
+print(my_dog.breed)      # Output: Golden Retriever
+print(my_dog.bark())     # Output: Buddy says Woof!
+# Parent class
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f"{self.name} makes a sound"
+
+# Child class inherits from Animal
+class Cat(Animal):
+    def speak(self):
+        return f"{self.name} says Meow!"
+
+# Create instances
+generic_animal = Animal("Some Animal")
+cat = Cat("Whiskers")
+
+print(generic_animal.speak())  # Output: Some Animal makes a sound
+print(cat.speak())             # Output: Whiskers says Meow!
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.__balance = balance  # private variable (name mangling)
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            return True
+        return False
+
+    def get_balance(self):
+        return self.__balance
+
+# Create a bank account object
+account = BankAccount("Lydia", 1000)
+
+account.deposit(500)
+print(account.get_balance())  # Output: 1500
+
+account.withdraw(700)
+print(account.get_balance())  # Output: 800
+
+# Attempting to access private variable directly will fail
+# print(account.__balance)  # class Bird:
+    def fly(self):
+        return "Some birds can fly"
+
+class Parrot(Bird):
+    def fly(self):
+        return "Parrots can fly"
+
+class Penguin(Bird):
+    def fly(self):
+        return "Penguins can't fly"
+
+# Iterate over different bird types
+birds = [Parrot(), Penguin(), Bird()]
+
+for bird in birds:
+    print(bird.fly())
+
