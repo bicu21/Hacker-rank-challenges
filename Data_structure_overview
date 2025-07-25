@@ -33,3 +33,42 @@ def inorder_traversal(node):
         inorder_traversal(node.right)
 
 inorder_traversal(root)  # Output: 3 5 7 10 15
+from collections import deque
+
+# Create a queue
+queue = deque()
+
+# Enqueue (Add elements)
+queue.append('a')
+queue.append('b')
+queue.append('c')
+
+print("Queue after enqueuing:", queue)
+
+# Dequeue (Remove elements)
+item = queue.popleft()
+print("Dequeued item:", item)
+
+print("Queue after dequeuing:", queue)
+Queue after enqueuing: deque(['a', 'b', 'c'])
+Dequeued item: a
+Queue after dequeuing: deque(['b', 'c'])
+# Create an empty stack
+stack = []
+
+# Push elements (add)
+stack.append('x')
+stack.append('y')
+stack.append('z')
+
+print("Stack after pushes:", stack)
+
+# Pop elements (remove)
+item = stack.pop()
+print("Popped item:", item)
+
+print("Stack after popping:", stack)
+Stack after pushes: ['x', 'y', 'z']
+Popped item: z
+Stack after popping: ['x', 'y']
+
