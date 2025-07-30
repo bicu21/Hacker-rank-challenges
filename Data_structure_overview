@@ -262,5 +262,29 @@ if __name__ == "__main__":
     tree.preOrder(root)
     print("\nInorder traversal after deletion:")
     tree.inOrder(root)
+import random
+
+# Initialize an empty list
+data = []
+
+# Insert random numbers into the list
+for _ in range(10):
+    num = random.randint(1, 100)
+    data.append(num)
+print("List after insertions:", data)
+
+# Randomly access elements
+for _ in range(3):
+    index = random.randint(0, len(data) - 1)
+    print(f"Random access at index {index}: {data[index]}")
+
+# Randomly remove elements
+for _ in range(3):
+    if data:  # Check if list is not empty
+        index = random.randint(0, len(data) - 1)
+        removed = data.pop(index)
+        print(f"Removed element {removed} at index {index}")
+
+print("Final list:", data)
 
 
