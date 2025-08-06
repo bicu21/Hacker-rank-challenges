@@ -26,6 +26,21 @@ unique_scores = list(set(arr))
 unique_scores.sort(reverse = True)
 runner_up = unique_scores[1]
 print(runner_up)
+# Input: list of scores
+scores = list(map(int, input("Enter scores separated by space: ").split()))
+
+# Get the highest score
+highest = max(scores)
+
+# Remove all occurrences of the highest score
+scores = [score for score in scores if score != highest]
+
+# Find the runner-up
+runner_up = max(scores)
+
+print("Runner-up score is:", runner_up)
+Enter scores separated by space: 2 3 6 6 5
+Runner-up score is: 5
 
 
 
