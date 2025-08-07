@@ -41,6 +41,20 @@ runner_up = max(scores)
 print("Runner-up score is:", runner_up)
 Enter scores separated by space: 2 3 6 6 5
 Runner-up score is: 5
+def find_runner_up(scores):
+    max_score = -float('inf')
+    runner_up = -float('inf')
+    for score in scores:
+        if score > max_score:
+            runner_up = max_score
+            max_score = score
+        elif max_score > score > runner_up:
+            runner_up = score
+    return runner_up
+
+scores = list(map(int, input().split()))
+print(find_runner_up(scores))
+
 
 
 
