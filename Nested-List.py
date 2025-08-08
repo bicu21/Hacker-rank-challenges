@@ -56,3 +56,11 @@ result.sort()
 # Print names alphabetically
 for name in result:
     print(name)
+# Simple nested list with equal-length inner lists
+nested_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+# Nested list with varying lengths of inner lists
+nested_list_varied = [[1, 2], [3, 4, 5], [6, 7, 8, 9]]
+
+# Nested list with mixed data types
+nested_list_mixed = [["Alice", 30], ["Bob", 25], ["Charlie", 35]]
