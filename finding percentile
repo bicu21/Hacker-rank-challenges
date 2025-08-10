@@ -34,3 +34,12 @@ alpha 20 30 40
 beta 50 60 70
 gamma 90 80 70
 beta
+import numpy as np
+
+data = [15, 20, 35, 40, 50]  # Example dataset
+
+# Find the 90th percentile
+percentile_90 = np.percentile(data, 90)
+
+print("90th Percentile:", percentile_90)
+
