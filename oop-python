@@ -80,4 +80,80 @@ birds = [Parrot(), Penguin(), Bird()]
 
 for bird in birds:
     print(bird.fly())
+# Define a class called Car
+class Car:
+    # Constructor method
+    def __init__(self, brand, model):
+        self.brand = brand   # instance variable for car's brand
+        self.model = model   # instance variable for car's model
+
+    # Method to start the car
+    def start(self):
+        return f"{self.brand} {self.model} engine started."
+
+# Create an instance of Car
+my_car = Car("Toyota", "Corolla")
+
+# Access attributes and methods
+print(my_car.brand)         # Output: Toyota
+print(my_car.model)         # Output: Corolla
+print(my_car.start())       # Output: Toyota Corolla engine started.
+
+# Parent class
+class Vehicle:
+    def __init__(self, make):
+        self.make = make
+
+    def move(self):
+        return f"{self.make} vehicle is moving."
+
+# Child class inherits from Vehicle
+class Bike(Vehicle):
+    def move(self):
+        return f"{self.make} bike is pedaled."
+
+# Create instances
+generic_vehicle = Vehicle("Generic")
+bike = Bike("Giant")
+
+print(generic_vehicle.move())  # Output: Generic vehicle is moving.
+print(bike.move())             # Output: Giant bike is pedaled.
+
+# Class demonstrating encapsulation
+class Wallet:
+    def __init__(self, owner, money):
+        self.owner = owner
+        self.__money = money  # private attribute
+
+    def add_money(self, amount):
+        if amount > 0:
+            self.__money += amount
+
+    def spend_money(self, amount):
+        if 0 < amount <= self.__money:
+            self.__money -= amount
+            return True
+        return False
+
+    def check_balance(self):
+        return self.__money
+
+# Create Wallet instance
+my_wallet = Wallet("Alice", 200)
+
+my_wallet.add_money(50)
+print(my_wallet.check_balance())  # Output: 250
+
+my_wallet.spend_money(70)
+print(my_wallet.check_balance())  # Output: 180
+
+# Polymorphism with different Vehicle types
+class Airplane(Vehicle):
+    def move(self):
+        return f"{self.make} airplane is flying."
+
+vehicles = [Bike("Trek"), Airplane("Boeing"), Vehicle("Ford")]
+
+for v in vehicles:
+    print(v.move())
 
