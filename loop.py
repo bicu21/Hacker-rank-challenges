@@ -1,12 +1,9 @@
+import random
 n = int(input('Enter the number'))
 for i in range(n):
     print(i* i)
 
-# git pull origin main --allow-unrelated-histories
-# git push -u origin main
-# git add .
-# git commit -m "Add Day 2 HackerRank solution"
-# git push
+
 # Loops
 # Loops are used to repeat a block of code multiple times.
 #  For loop
@@ -100,6 +97,38 @@ string = "python"
 
 for string in "python":
     print("string")
+
+# To print elements of a list along with their indexes in python
+n = [4,6,8,1]
+for i in range(len(n)):
+    print(i,n[i])
+
+num = 0
+
+while num <= 7:
+    num.random.randint(1,10)
+    print(num)
+               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# git pull origin main --allow-unrelated-histories
+# git push -u origin main
+# git add .
+# git commit -m "Add Day 2 HackerRank solution"
+# git push
 
 
 
