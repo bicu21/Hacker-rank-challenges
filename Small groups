@@ -17,3 +17,25 @@ b  = float(input("Enter the second number:"))
 
 
 calculator (a, b, operator)
+# Number guessing game
+import random
+
+def guess_game():
+    secret = random.randint(1, 20)
+    attempts = 0
+
+    print("Guess a number between 1 and 20!")
+
+    while True:
+        guess = int(input("Enter your guess: "))
+        attempts += 1
+
+        if guess < secret:
+            print("Too low! Try again.")
+        elif guess > secret:
+            print("Too high! Try again.")
+        else:
+            print(f"🎉 Correct! You guessed it in {attempts} tries.")
+            break
+
+guess_game()
