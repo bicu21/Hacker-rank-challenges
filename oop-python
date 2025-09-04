@@ -157,3 +157,19 @@ vehicles = [Bike("Trek"), Airplane("Boeing"), Vehicle("Ford")]
 for v in vehicles:
     print(v.move())
 
+# Define a class named Animal
+class Animal:
+    def __init__(self, name, species):
+        self.name = name
+        self.species = species
+        
+    def make_sound(self):
+        print(f"{self.name} says: Hello!")
+
+# Create instances (objects) of the Animal class
+dog = Animal("Buddy", "Dog")
+cat = Animal("Whiskers", "Cat")
+
+# Call methods on the objects
+dog.make_sound()  # Output: Buddy says: Hello!
+cat.make_sound()  # Output: Whiskers says: Hello!
