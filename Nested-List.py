@@ -64,3 +64,16 @@ nested_list_varied = [[1, 2], [3, 4, 5], [6, 7, 8, 9]]
 
 # Nested list with mixed data types
 nested_list_mixed = [["Alice", 30], ["Bob", 25], ["Charlie", 35]]
+# Creating a nested list with different types of elements
+nested_list = ["Python", 35, [1, 3, 5, 7]]
+
+# Access elements of nested list
+print("First element:", nested_list[0])  # Python
+print("Second element:", nested_list[1]) # 35
+print("Third element (list):", nested_list[2]) # [1, 3, 5, 7]
+
+# Access elements inside the sub-list
+print("First element of sub-list:", nested_list[2][0]) # 1
+print("Second element of sub-list:", nested_list[2][1]) # 3
+print("Third element of sub-list:", nested_list[2][2]) # 5
+print("Fourth element of sub-list:", nested_list[2][3]) # 7
