@@ -56,6 +56,56 @@ scores = list(map(int, input().split()))
 print(find_runner_up(scores))
 
 
+import tkinter as tk
+from tkinter import Frame, Label
+
+class GlassNavBar(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent, bg='#ffffff40')  # white with alpha for translucency
+        self.config(height=50)
+        self.pack(side='top', fill='x')
+        self.create_nav_items()
+
+    def create_nav_items(self):
+        nav_items = ['Home', 'About', 'Gallery', 'Contact']
+        for i, item in enumerate(nav_items):
+            label = Label(self, text=item, bg='#ffffff40', fg='black', font=('Arial', 14, 'bold'))
+            label.pack(side='left', padx=20, pady=10)
+
+
+
+import tkinter as tk
+from tkinter import Frame, Label
+
+class GlassNavBar(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent, bg='#ffffff40')  # white with alpha for translucency
+        self.config(height=50)
+        self.pack(side='top', fill='x')
+        self.create_nav_items()
+
+    def create_nav_items(self):
+        nav_items = ['Home', 'About', 'Gallery', 'Contact']
+        for i, item in enumerate(nav_items):
+            label = Label(self, text=item, bg='#ffffff40', fg='black', font=('Arial', 14, 'bold'))
+            label.pack(side='left', padx=20, pady=10)
+
+def main():
+    root = tk.Tk()
+    root.geometry("800x600")
+    root.title('Glass Effect Navbar in Python')
+
+    # Semi-transparent background for demo
+    root.config(bg='#444444')
+
+    navbar = GlassNavBar(root)
+    
+    root.mainloop()
+
+if __name__ == '__main__':
+    main()
+
+
 
 
 
