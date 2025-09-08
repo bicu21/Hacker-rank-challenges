@@ -77,3 +77,26 @@ print("First element of sub-list:", nested_list[2][0]) # 1
 print("Second element of sub-list:", nested_list[2][1]) # 3
 print("Third element of sub-list:", nested_list[2][2]) # 5
 print("Fourth element of sub-list:", nested_list[2][3]) # 7
+# Creating a list (works like an array)
+arr = [10, 20, 30, 40]
+
+# Access elements
+print(arr[0])   # 10
+print(arr[-1])  # 40 (last element)
+
+# Modify elements
+arr[1] = 25
+print(arr)  # [10, 25, 30, 40]
+
+# Add elements
+arr.append(50)
+print(arr)  # [10, 25, 30, 40, 50]
+
+# Remove elements
+arr.remove(30)  # removes first occurrence
+print(arr)  # [10, 25, 40, 50]
+
+# Iterate
+for num in arr:
+    print(num)
+
