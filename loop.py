@@ -108,6 +108,67 @@ num = 0
 while num <= 7:
     num.random.randint(1,10)
     print(num)
+
+# ------------------------------
+# For loop
+# ------------------------------
+print("For loop:")
+for i in range(5):   # 0 to 4
+    print(i)
+
+# ------------------------------
+# For loop with list
+# ------------------------------
+print("\nFor loop with list:")
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+
+# ------------------------------
+# For loop with index using enumerate
+# ------------------------------
+print("\nFor loop with index:")
+for index, fruit in enumerate(fruits):
+    print(index, fruit)
+
+# ------------------------------
+# While loop
+# ------------------------------
+print("\nWhile loop:")
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+# ------------------------------
+# Nested loops
+# ------------------------------
+print("\nNested loops:")
+for i in range(3):
+    for j in range(2):
+        print(f"i={i}, j={j}")
+
+# ------------------------------
+# Loop control statements
+# ------------------------------
+print("\nBreak example:")
+for i in range(10):
+    if i == 5:
+        break
+    print(i)
+
+print("\nContinue example:")
+for i in range(10):
+    if i % 2 == 0:
+        continue
+    print(i)
+
+print("\nElse in loop:")
+for i in range(3):
+    print(i)
+else:
+    print("Loop finished without break")
+
                
 
 
