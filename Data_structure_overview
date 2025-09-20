@@ -659,6 +659,301 @@ def binary_search(arr, target):
 numbers = [1, 3, 5, 7, 9, 11]
 print(binary_search(numbers, 7))   # ➞ 3
 print(binary_search(numbers, 4))   # ➞ -1
+"""
+dsa.py
+A compact collection of common data structures and algorithms in Python
+Run: python dsa.py
+"""
+
+from collections import deque, defaultdict
+import heapq
+from typing import List, Dict, Tuple, Optional, Any
+
+
+# -----------------------------
+# Searching & Sorting
+# -----------------------------
+def binary_search(arr: List[int], target: int) -> int:
+    """Return index of target or -1. O(log n)"""
+    lo, hi = 0, len(arr) - 1
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        if arr[mid] == target:
+            return mid
+        if arr[mid] < target:
+            lo = mid + 1
+        else:
+            hi = mid - 1
+    return -1
+
+
+def mergesort(arr: List[int]) -> List[int]:
+    """Stable sort. O(n log n)"""
+    if len(arr) <= 1:
+        return arr[:]
+    mid = len(arr) // 2
+    left = mergesort(arr[:mid])
+    right = mergesort(arr[mid:])
+    res = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            res.append(left[i]); i += 1
+        else:
+            res.append(right[j]); j += 1
+    res.extend(left[i:]); res.extend(right[j:])
+    return res
+
+
+def quicksort(arr: List[int]) -> List[int]:
+    """Quicksort (not in-place). Average O(n log n), worst O(n^2)"""
+    if len(arr) <= 1:
+        return arr[:]
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    mid = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    return quicksort(left) + mid + quicksort(right)
+
+
+# -----------------------------
+# Basic Data Structures
+# -----------------------------
+class Stack:
+    def __init__(self):
+        self._data = []
+    def push(self, x): self._data.append(x)
+    def pop(self):
+        return self._data.pop() if self._data else None
+    def peek(self):
+        return self._data[-1] if self._data else None
+    def is_empty(self): return len(self._data) == 0
+    def __len__(self): return len(self._data)
+
+
+class Queue:
+    def __init__(self):
+        self._dq = deque()
+    def push(self, x): self._dq.append(x)
+    def pop(self):
+        return self._dq.popleft() if self._dq else None
+    def is_empty(self): return len(self._dq) == 0
+    def __len__(self): return len(self._dq)
+
+
+class LinkedListNode:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    def append(self, val):
+        node = LinkedListNode(val)
+        if not self.head:
+            self.head = node
+            return
+        cur = self.head
+        while cur.next:
+            cur = cur.next
+        cur.next = node
+    def to_list(self):
+        res = []
+        cur = self.head
+        while cur:
+            res.append(cur.val); cur = cur.next
+        return res
+
+
+# -----------------------------
+# Graph Algorithms
+# -----------------------------
+def bfs(graph: Dict[Any, List[Any]], start: Any) -> List[Any]:
+    """Breadth-first traversal order. O(V+E)"""
+    q = deque([start])
+    seen = {start}
+    order = []
+    while q:
+        node = q.popleft()
+        order.append(node)
+        for nei in graph.get(node, []):
+            if nei not in seen:
+                seen.add(nei)
+                q.append(nei)
+    return order
+
+
+def dfs(graph: Dict[Any, List[Any]], start: Any) -> List[Any]:
+    """Depth-first traversal order (iterative). O(V+E)"""
+    stack = [start]
+    seen = {start}
+    order = []
+    while stack:
+        node = stack.pop()
+        order.append(node)
+        for nei in graph.get(node, [])[::-1]:
+            if nei not in seen:
+                seen.add(nei)
+                stack.append(nei)
+    return order
+
+
+def topological_sort(graph: Dict[Any, List[Any]]) -> List[Any]:
+    """Kahn's algorithm. Returns a topological order or empty list if cycle."""
+    indeg = defaultdict(int)
+    for u in graph:
+        indeg[u]  # ensure key
+        for v in graph[u]:
+            indeg[v] += 1
+    q = deque([u for u in indeg if indeg[u] == 0])
+    order = []
+    while q:
+        u = q.popleft()
+        order.append(u)
+        for v in graph.get(u, []):
+            indeg[v] -= 1
+            if indeg[v] == 0:
+                q.append(v)
+    if len(order) != len(indeg):
+        return []  # cycle
+    return order
+
+
+def dijkstra(graph: Dict[Any, List[Tuple[Any, int]]], src: Any) -> Dict[Any, int]:
+    """Shortest distances from src in weighted graph with non-negative weights."""
+    dist = {}
+    pq = [(0, src)]
+    while pq:
+        d, u = heapq.heappop(pq)
+        if u in dist:
+            continue
+        dist[u] = d
+        for v, w in graph.get(u, []):
+            if v not in dist:
+                heapq.heappush(pq, (d + w, v))
+    return dist
+
+
+# -----------------------------
+# Union-Find (Disjoint Set)
+# -----------------------------
+class UnionFind:
+    def __init__(self, n: int):
+        self.parent = list(range(n))
+        self.rank = [0] * n
+    def find(self, x: int) -> int:
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+    def union(self, x: int, y: int) -> bool:
+        rx, ry = self.find(x), self.find(y)
+        if rx == ry:
+            return False
+        if self.rank[rx] < self.rank[ry]:
+            self.parent[rx] = ry
+        elif self.rank[ry] < self.rank[rx]:
+            self.parent[ry] = rx
+        else:
+            self.parent[ry] = rx
+            self.rank[rx] += 1
+        return True
+
+
+# -----------------------------
+# Heaps / Priority Queue helpers
+# -----------------------------
+class MinHeap:
+    def __init__(self, iterable=None):
+        self._h = []
+        if iterable:
+            for x in iterable:
+                heapq.heappush(self._h, x)
+    def push(self, x): heapq.heappush(self._h, x)
+    def pop(self): return heapq.heappop(self._h) if self._h else None
+    def peek(self): return self._h[0] if self._h else None
+    def __len__(self): return len(self._h)
+
+
+# -----------------------------
+# Misc Algorithms
+# -----------------------------
+def two_sum(nums: List[int], target: int) -> Optional[Tuple[int,int]]:
+    """Return indices of two numbers adding to target, or None. O(n)"""
+    seen = {}
+    for i, x in enumerate(nums):
+        need = target - x
+        if need in seen:
+            return (seen[need], i)
+        seen[x] = i
+    return None
+
+
+def longest_common_prefix(strs: List[str]) -> str:
+    if not strs: return ""
+    prefix = strs[0]
+    for s in strs[1:]:
+        while not s.startswith(prefix):
+            prefix = prefix[:-1]
+            if not prefix:
+                return ""
+    return prefix
+
+
+# -----------------------------
+# Examples / Basic tests
+# -----------------------------
+def _run_examples():
+    print("=== Searching & Sorting ===")
+    a = [1,2,3,4,5,8,13]
+    print("binary_search 8 ->", binary_search(a, 8))
+    arr = [5,2,9,1,5,6]
+    print("mergesort ->", mergesort(arr))
+    print("quicksort ->", quicksort(arr))
+
+    print("\n=== Stack / Queue / LinkedList ===")
+    s = Stack(); s.push(10); s.push(20)
+    print("stack pop ->", s.pop())
+    q = Queue(); q.push(1); q.push(2)
+    print("queue pop ->", q.pop())
+    ll = LinkedList(); ll.append(5); ll.append(7); ll.append(9)
+    print("linkedlist ->", ll.to_list())
+
+    print("\n=== Graph Traversals ===")
+    g = {
+        0: [1,2],
+        1: [2],
+        2: [0,3],
+        3: [3]
+    }
+    print("bfs from 2 ->", bfs(g, 2))
+    print("dfs from 2 ->", dfs(g, 2))
+
+    print("\n=== Topo & Dijkstra ===")
+    g2 = {'a':['b','c'], 'b':['d'], 'c':['d'], 'd':[]}
+    print("topo ->", topological_sort(g2))
+    wg = {
+        'A': [('B',5), ('C',1)],
+        'B': [('A',5), ('C',2), ('D',1)],
+        'C': [('A',1), ('B',2), ('D',4), ('E',8)],
+        'D': [('B',1), ('C',4), ('E',3)],
+        'E': [('C',8), ('D',3)]
+    }
+    print("dijkstra from A ->", dijkstra(wg, 'A'))
+
+    print("\n=== Union-Find ===")
+    uf = UnionFind(5)
+    uf.union(0,1); uf.union(1,2)
+    print("find 2 ->", uf.find(2), "find 3 ->", uf.find(3))
+
+    print("\n=== Heaps & Two-sum ===")
+    h = MinHeap([3,1,4])
+    print("minheap pop ->", h.pop())
+    print("two_sum [2,7,11,15], 9 ->", two_sum([2,7,11,15], 9))
+
+if __name__ == "__main__":
+    _run_examples()
+
 
 
 
