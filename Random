@@ -1,0 +1,53 @@
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+class BST:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, key):
+        def _insert(root, key):
+            if root is None:
+                return Node(key)
+            if key < root.val:
+                root.left = _insert(root.left, key)
+            else:
+                root.right = _insert(root.right, key)
+            return root
+        
+        self.root = _insert(self.root, key)
+
+    def search(self, key):
+        def _search(root, key):
+            if root is None or root.val == key:
+                return root
+            if key < root.val:
+                return _search(root.left, key)
+            return _search(root.right, key)
+        
+        return _search(self.root, key)
+
+    def inorder(self):
+        result = []
+        def _inorder(root):
+            if root:
+                _inorder(root.left)
+                result.append(root.val)
+                _inorder(root.right)
+        _inorder(self.root)
+        return result
+
+# Example Usage
+tree = BST()
+values = [50, 30, 20, 40, 70, 60, 80]
+for val in values:
+    tree.insert(val)
+
+print("Inorder Traversal:", tree.inorder())
+
+search_val = 60
+found = tree.search(search_val)
+print(f"Search for {search_val}:", "Found" if found else "Not Found")
