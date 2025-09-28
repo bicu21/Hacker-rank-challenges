@@ -953,6 +953,36 @@ def _run_examples():
 
 if __name__ == "__main__":
     _run_examples()
+import random
+
+def binary_search(arr, target):
+    """Return the index of target in arr if found, else -1."""
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+# Generate a random sorted list
+size = 10
+arr = sorted(random.sample(range(1, 100), size))  # 10 unique numbers between 1–99
+target = random.choice(arr)                       # Pick a random number from the list
+
+print("Array:", arr)
+print("Target:", target)
+
+result = binary_search(arr, target)
+
+if result != -1:
+    print(f"Target found at index {result}")
+else:
+    print("Target not found")
+
 
 
 
